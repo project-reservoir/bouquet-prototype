@@ -1,0 +1,60 @@
+@import "reset.less";
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic,300,100,300italic');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800');
+
+
+div,p,h2,h3{
+	font-family: 'lato', sans-serif;
+	font-weight: 200;
+}
+h1{
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+}
+
+body{
+	.map-content{
+		width: 49%;
+		height: 100vh;
+		display: inline-block;
+	}
+	.data-content{
+		width: 50%;
+		background: grey;
+		height: 100vh;
+		display: inline-block;
+	}
+}
+
+
+
+.clearfix{
+	clear: both;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+.no-box-shadow{
+		-webkit-box-shadow: 0px 0px 32px 10px rgba(0,0,0,0);
+	-moz-box-shadow: 0px 0px 32px 10px rgba(0,0,0,0);
+	box-shadow: 0px 0px 32px 10px rgba(0,0,0,0);
+}
+.box-shadow{
+	-webkit-box-shadow: 0px 0px 32px 10px rgba(0,0,0,0.18);
+	-moz-box-shadow: 0px 0px 32px 10px rgba(0,0,0,0.18);
+	box-shadow: 0px 0px 32px 10px rgba(0,0,0,0.18);
+}
+
+.transition(@time){
+  -webkit-transition: all @time ease 0s;
+    -moz-transition: all @time ease 0s;
+    -o-transition: all @time ease 0s;
+  -ms-transition: all @time ease 0s;
+    transition: all @time ease 0s;
+} //transition
