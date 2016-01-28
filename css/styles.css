@@ -147,25 +147,162 @@ textarea {
 }
 div,
 p,
+h1,
 h2,
-h3 {
-  font-family: 'lato', sans-serif;
-  font-weight: 200;
-}
-h1 {
+h3,
+span,
+li,
+ul {
   font-family: 'Raleway', sans-serif;
-  font-weight: 600;
+  font-weight: 200;
+  letter-spacing: 0.5px;
 }
-body .map-content {
-  width: 49%;
+body .content-wrapper {
+  width: 86.5%;
+  margin: 45px auto 0px;
+  display: block;
+}
+body .map-wrapper {
+  width: 44%;
   height: 100vh;
   display: inline-block;
 }
-body .data-content {
-  width: 50%;
-  background: grey;
+body .data-wrapper {
+  width: 58%;
+  background: #282828;
   height: 100vh;
   display: inline-block;
+  color: #FFFFFF;
+  position: absolute;
+  right: 0;
+  padding-left: 17px;
+}
+body .data-wrapper .data-nav {
+  background: #5797E3;
+  width: 82px;
+  height: 400px;
+  position: absolute;
+  left: 0px;
+  margin-left: -60px;
+}
+body .data-wrapper .data-content .data-content-header {
+  display: block;
+  position: relative;
+}
+body .data-wrapper .data-content .data-content-header h2 {
+  color: white;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+body .data-wrapper .data-content .data-content-header ul.data-toggle {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+body .data-wrapper .data-content .data-content-header ul.data-toggle li {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+  opacity: 0.2;
+}
+body .data-wrapper .data-content .data-content-header ul.data-toggle li img {
+  width: 100%;
+}
+body .data-wrapper .data-content .data-content-header ul.data-toggle li:hover {
+  opacity: 1;
+}
+body .data-wrapper .data-content .data-content-header .content-divider {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.72);
+  margin: 20px 0px 30px;
+}
+body .data-wrapper .data-content .dandelion-data {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 42px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing {
+  width: inherit;
+  display: inherit;
+  position: inherit;
+  margin: 0 auto;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item {
+  display: inline-block;
+  border: 1px solid rgba(150, 150, 150, 0.3);
+  border-radius: 1px;
+  width: 41%;
+  margin: 5px;
+  margin-left: 0px;
+  padding: 18px 24px 8px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item h3 {
+  display: block;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item h3 span {
+  color: #5797E3;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 5px;
+  vertical-align: initial;
+  margin-right: 5px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul {
+  margin-top: 17px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li {
+  display: inline-block;
+  width: 21%;
+  text-align: center;
+  margin-right: 15%;
+  margin-bottom: 22px;
+  min-width: 60px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li p {
+  font-size: 18px;
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-family: 'Lato', sans-serif;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li p span {
+  display: block;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.6);
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li h4 {
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 800;
+  font-size: 10px;
+  margin-top: 3px;
+  letter-spacing: 1px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li.multiple-list {
+  text-align: left;
+  margin-right: 0px;
+  width: 55%;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li.multiple-list p {
+  margin-right: 22px;
+}
+body .data-wrapper .data-content .dandelion-data ul.dandelion-listing li.dandelion-listing-item ul li.multiple-list p:nth-child(3) {
+  margin-right: 0px;
 }
 .clearfix {
   clear: both;
