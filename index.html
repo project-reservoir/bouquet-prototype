@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Bouquet</title>
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-
     <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
   </head>
@@ -14,10 +12,27 @@
 
   	</section>
   	<section class="data-wrapper right">
-  		<div class="data-nav"></div>
+  		<ul class="data-nav">
+  			<li class="data-nav-li active">
+  				<img src="assets/nav/sensor.svg">
+  				<h3>Sensor</h3>
+  			</li>
+  			<li class="data-nav-li">
+  				<img src="assets/nav/heatmap.svg">
+  				<h3>Heatmap</h3>
+  			</li>
+  			<li class="data-nav-li">
+  				<img src="assets/nav/irrigation.svg">
+  				<h3>Irrigation</h3>
+  			</li>
+  			<li class="data-nav-li">
+  				<img src="assets/nav/settings.svg">
+  				<h3>Settings</h3>
+  			</li>
+  		</ul>
   		<div class="data-content">
   			<div class="content-wrapper">
-	  			<div class="data-content-header">
+	  			<div class="data-content-header" id="all-sensor">
 	  				<h2>Sensor Data Sheet</h2>
 	  				<div class="content-divider"></div>
 	  				<ul class="data-toggle">
@@ -25,40 +40,27 @@
 		  				<li id="toggle-grid"><img src="assets/grid.svg"></li>
 	  				</ul>
 	  			</div>
-
 	  			<!-- Listing section -->
-	  			<div class="dandelion-data">
+	  			<div class="dandelion-data list-view" style="display: none">
+	  				<ul class="list-view-header">
+	  					<li class="header-sensor">Sensor</li>
+	  					<li class="header-air-temp">Air Temp</li>
+	  					<li class="header-soil-temp">Soil Temp<br>
+		  					<span>Level 1</span>
+		  					<span>Level 2</span>
+		  					<span>Level 3</span>
+	  					</li>
+	  					<li class="header-humidity">Humidity</li>
+	  					<li class="header-moisture">Moisture<br>
+		  					<span>Level 1</span>
+		  					<span>Level 2</span>
+		  					<span>Level 3</span>
+	  					</li>
+	  				</ul>
 	  				<ul class="dandelion-listing">
 	  					<li class="dandelion-listing-item">
-	  						<h3>Dandelion<span>#1</span></h3>
 	  						<ul>
-	  							<li class="air-temp">
-	  								<p>17 <span>&nbsp;</span></p>
-	  								<h4>Air Temp</h4>
-	  							</li>
-	  							<li class="soil-temp multiple-list">
-	  								<p>11 <span>Level 1</span></p>
-	  								<p>12 <span>Level 2</span></p>
-	  								<p>14 <span>Level 3</span></p>
-	  								
-	  								<h4>Soil Temp</h4>
-	  							</li>
-	  							<li class="humidity">
-	  								<p>90 <span>&nbsp;</span></p>
-	  								<h4>Humidity</h4>
-	  							</li>
-	  							<li class="moisture multiple-list">
-	  								<p>63 <span>Level 1</span></p>
-	  								<p>49 <span>Level 2</span></p>
-	  								<p>28 <span>Level 3</span></p>
-	  								
-	  								<h4>Moisture</h4>
-	  							</li>
-	  						</ul>
-	  					</li>
-	  					<li class="dandelion-listing-item">
-	  						<h3>Dandelion<span>#2</span></h3>
-	  						<ul>
+	  							<h3 class="sensor">Dandelion<span>#1</span></h3>
 	  							<li class="air-temp">
 	  								<p>17<span>&nbsp;</span></p>
 	  								<h4>Air Temp</h4>
@@ -83,10 +85,9 @@
 	  							</li>
 	  						</ul>
 	  					</li>
-
 	  					<li class="dandelion-listing-item">
-	  						<h3>Dandelion<span>#3</span></h3>
 	  						<ul>
+	  							<h3 class="sensor">Dandelion<span>#2</span></h3>
 	  							<li class="air-temp">
 	  								<p>17<span>&nbsp;</span></p>
 	  								<h4>Air Temp</h4>
@@ -111,10 +112,9 @@
 	  							</li>
 	  						</ul>
 	  					</li>
-
 	  					<li class="dandelion-listing-item">
-	  						<h3>Dandelion<span>#4</span></h3>
 	  						<ul>
+	  							<h3 class="sensor">Dandelion<span>#3</span></h3>
 	  							<li class="air-temp">
 	  								<p>17<span>&nbsp;</span></p>
 	  								<h4>Air Temp</h4>
@@ -140,11 +140,110 @@
 	  						</ul>
 	  					</li>
 	  				</ul>
-
 	  			</div>
-  			</div>
-  			
+	  			<div class="data-content-header" id="indiv-sensor">
+	  				<h2>Sensor: Dandelion <span>#1</span></h2>
+	  				<div class="content-divider"></div>
+	  				<ul class="data-toggle">
+		  				<li id="toggle-daily" class="active">Daily</li>
+		  				<li id="toggle-weekly">Weekly</li>
+		  				<li id="toggle-montly">Monthly</li>
+	  				</ul>
+	  			</div>
+	  			<div class="indiv-sensor-data">
+	  				<ul class="device-metadata">
+						<h3 class="sensor">Device Metadata</h3>
+						<li class="sensor-img">
+							<img src="assets/sensor-thumb.png">
+						</li>
+						<li class="battery">
+							<p>99%</p>
+							<h4>Battery</h4>
+						</li>
+						<li class="altitude">
+							<p>1.2m</p>
+							<h4>Altitude</h4>
+						</li>
+						<li class="longtitude">
+							<p>21.205874</p>
+							<h4>Longitude</h4>
+						</li>
+						<li class="latitude">
+							<p>93.827404</p>
+							<h4>Latitude</h4>
+						</li>
+					</ul>	
+					<div class="moisture-trend">
+						<h3 class="sensor">Mositure Level Trend</h3>
+						<h4>Measured in % overtime for each level</h4>
+						<ul class="legend">
+							<li><div class="legend-circle"></div><p>Level 1</p></li>
+							<li><div class="legend-circle"></div><p>Level 2</p></li>
+							<li><div class="legend-circle"></div><p>Level 3</p></li>
+						</ul>
 
+						<div class="moisture-table">
+							<div class="table-row">
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+								<div class="table-cell"><div class="cell-color"></div></div>
+							</div>
+							
+						</div>
+						
+					</div>
+	  			</div>
+
+  			</div>
   		</div>
   	</section>
   	<div class="clearfix"></div>
