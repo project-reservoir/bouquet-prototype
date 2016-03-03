@@ -163,7 +163,7 @@ body .content-wrapper {
   display: block;
 }
 body .map-wrapper {
-  width: 44%;
+  width: 42%;
   height: 100vh;
   display: inline-block;
 }
@@ -175,7 +175,7 @@ body .data-wrapper {
   color: #FFFFFF;
   position: absolute;
   right: 0;
-  padding-left: 17px;
+  padding-left: 0px;
 }
 body .data-wrapper ul.data-nav {
   background: #5797E3;
