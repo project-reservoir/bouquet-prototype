@@ -9,8 +9,7 @@
 
   <body id="page-body">
   	<section class="map-wrapper left" id="map" styles="width: 400px; height: 400px;">
-  		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer></script>
+  		
   	</section>
   	<section class="data-wrapper right">
   		<ul class="data-nav">
@@ -250,12 +249,33 @@
   	<div class="clearfix"></div>
   </body>
   <script>
+  	var map;
 	  function initMap() {
-	  	var mapDiv = document.getElementById('map');
-    	var map = new google.maps.Map(mapDiv,{
-      center: {lat: 44.540, lng: -78.546},
-      zoom: 8
-    	});
-	  }
+        var mapDiv = document.getElementById('map');
+        map = new google.maps.Map(mapDiv, {
+          center: {lat: 36.8689, lng: -119.7044},
+          zoom: 16
+        });
+
+        var script = document.createElement('script');
+        script.src = 'map-1.geojson';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+	  // Loop through the results array and place a marker for each set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+       	console.log(coords[1]+ ' ' +coords[0])
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: "Marker"
+          });
+        }
+      }
+      //google.maps.event.addDomListener(window, 'load', initMap)
 	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
 </html>
