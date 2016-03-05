@@ -622,11 +622,8 @@ body .data-wrapper .data-content .indiv-sensor-data .moisture-trend .moisture-ta
   margin-left: 2px;
   margin-top: 2px;
 }
-#all-sensor {
-  display: NONE;
-}
 #indiv-sensor {
-  display: block;
+  display: none;
 }
 #indiv-sensor h2 {
   font-weight: 900;
