@@ -5,33 +5,36 @@
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/styles.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   </head>
 
   <body id="page-body">
   	<section class="map-wrapper left" id="map" styles="width: 400px; height: 400px;">
   		
   	</section>
+  	<ul class="data-nav">
+		<li class="data-nav-li active">
+			<img src="assets/nav/sensor.svg">
+			<h3>Sensor</h3>
+		</li>
+		<li class="data-nav-li">
+			<img src="assets/nav/heatmap.svg">
+			<h3>Heatmap</h3>
+		</li>
+		<li class="data-nav-li">
+			<img src="assets/nav/irrigation.svg">
+			<h3>Irrigation</h3>
+		</li>
+		<li class="data-nav-li">
+			<img src="assets/nav/settings.svg">
+			<h3>Settings</h3>
+		</li>
+	</ul>
   	<section class="data-wrapper right">
-  		<ul class="data-nav">
-  			<li class="data-nav-li active">
-  				<img src="assets/nav/sensor.svg">
-  				<h3>Sensor</h3>
-  			</li>
-  			<li class="data-nav-li">
-  				<img src="assets/nav/heatmap.svg">
-  				<h3>Heatmap</h3>
-  			</li>
-  			<li class="data-nav-li">
-  				<img src="assets/nav/irrigation.svg">
-  				<h3>Irrigation</h3>
-  			</li>
-  			<li class="data-nav-li">
-  				<img src="assets/nav/settings.svg">
-  				<h3>Settings</h3>
-  			</li>
-  		</ul>
+  		
   		<div class="data-content">
   			<div class="content-wrapper">
+  				<!-- total header -->
 	  			<div class="data-content-header" id="all-sensor">
 	  				<h2>Sensor Data Sheet</h2>
 	  				<div class="content-divider"></div>
@@ -41,7 +44,7 @@
 	  				</ul>
 	  			</div>
 	  			<!-- Listing section, change to grid-view for grid section -->
-	  			<div class="dandelion-data list-view" id="test" style="display: block">
+	  			<div class="dandelion-data list-view" id="test" style="display: none">
 	  				<ul class="list-view-header">
 	  					<li class="header-sensor">Sensor</li>
 	  					<li class="header-air-temp">Air Temp</li>
@@ -141,6 +144,10 @@
 	  					</li>
 	  				</ul>
 	  			</div>
+
+
+
+	  			<!-- indiv header -->
 	  			<div class="data-content-header" id="indiv-sensor">
 	  				<h2>Sensor: Dandelion <span>#1</span></h2>
 	  				<div class="content-divider"></div>
@@ -150,7 +157,8 @@
 		  				<li id="toggle-montly">Monthly</li>
 	  				</ul>
 	  			</div>
-	  			<div class="indiv-sensor-data" style="display: none">
+	  			<!-- individual data view -->
+	  			<div class="indiv-sensor-data" style="display: block">
 	  				<ul class="device-metadata">
 						<h3 class="sensor">Device Metadata</h3>
 						<li class="sensor-img">
@@ -238,8 +246,21 @@
 								<div class="table-cell"><div class="cell-color"></div></div>
 							</div>
 							
-						</div>
+						</div>			
+					</div>
+					<div class="humidity-trend">
+						<h3 class="sensor">Humidity Trend</h3>
+						<h4>Measured in % overtime for each level</h4>
 						
+						<canvas id="humidity-chart"></canvas>
+
+					</div>
+					<div class="soil-temp-trend">
+						<h3 class="sensor">Soil Temperature Trend</h3>
+						<h4>Measured in % overtime for each level</h4>
+						
+						<canvas id="soil-temp-chart"></canvas>
+
 					</div>
 	  			</div>
 
@@ -250,6 +271,8 @@
   </body>
   <script>
   	var map;
+  	var detail;
+  	var infoArray = new Array();
 	  function initMap() {
         var mapDiv = document.getElementById('map');
         map = new google.maps.Map(mapDiv, {
@@ -276,11 +299,31 @@
           popup = "Dandelion " + i;
           attachMessage(marker, popup);
 
+	        //Add additional data
+	        var dTitle = results.features[i].properties.title;
+	  		var dId = results.features[i].properties.id;
+	  		var dHumidity = results.features[i].properties.humidity;
+	  		var dAirTemp = results.features[i].properties.airtemp;
+	  		var dTemp1 = results.features[i].properties.temp1;
+	  		var dTemp2 = results.features[i].properties.temp2;
+	  		var dTemp3 = results.features[i].properties.temp3;
+	  		var dMois1 = results.features[i].properties.mois1;
+	  		var dMois2 = results.features[i].properties.mois2;
+	  		var dMois3 = results.features[i].properties.mois3;
+	  		var dType = results.features[i].properties.type;
+	  		var dBattery = results.features[i].properties.battery;
+
+	  		detail = [dTitle, dId, dHumidity, dAirTemp, dTemp1, dTemp2, dTemp3, dMois1, dMois2, dMois3, dType, dBattery];
+			infoArray.push(detail);
         }
+	      for (var j = 0; j < infoArray.length; j++) {
+	      	var list = document.getElementById('test');
+	      	var item = document.createElement('li');
+	      	item.appendChild(document.createTextNode(infoArray[j]));
+	      	list.appendChild(item);
+	      }
       }
 
-      // Attaches an info window to a marker with the provided message. When the
-		// marker is clicked, the info window will open with the secret message.
 		function attachMessage(marker, info) {
 		  var infowindow = new google.maps.InfoWindow({
 		    content: info
@@ -288,39 +331,55 @@
 
 		  marker.addListener('click', function() {
 		    infowindow.open(marker.get('map'), marker);
+
 		  });
 		}
 
-      //google.maps.event.addDomListener(window, 'load', initMap)
+	</script>
+	<script>
+		var humidityData = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "Humidity Data",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    barValueSpacing : 5,
+                }
+            ]
+        };
 
-      //fill in data for the tables 
-   //    var data = document.createElement('script');
-   //    data.src = 'map-1.geojson';
-	  // document.getElementsByTagName('head')[0].appendChild(data);
-	  // window.eqfeed_callback = function(results) {
-	  // 	console.log(results);
-	  // 	for (var i=0; i<results.features.length; i++){
-	  // 		var dTitle = results.features[i].properties.title;
-	  // 		var dId = results.features[i].properties.id;
-	  // 		var dHumidity = results.features[i].properties.humidity;
-	  // 		var dAirTemp = results.features[i].properties.airtemp;
-	  // 		var dTemp1 = results.features[i].properties.temp1;
-	  // 		var dTemp2 = results.features[i].properties.temp2;
-	  // 		var dTemp3 = results.features[i].properties.temp3;
-	  // 		var dMois1 = results.features[i].properties.mois1;
-	  // 		var dMois2 = results.features[i].properties.mois2;
-	  // 		var dMois3 = results.features[i].properties.mois3;
-	  // 		var dType = results.features[i].properties.type;
-	  // 		var dBattery = results.features[i].properties.battery;
+        var data = {
+		    labels: ["January", "February", "March", "April", "May", "June", "July"],
+		    datasets: [
+		        {
+		            label: "My First dataset",
+		            fillColor: "rgba(220,220,220,0.2)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: [65, 59, 80, 81, 56, 55, 40]
+		        },
+		        {
+		            label: "My Second dataset",
+		            fillColor: "rgba(151,187,205,0.2)",
+		            strokeColor: "rgba(151,187,205,1)",
+		            pointColor: "rgba(151,187,205,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(151,187,205,1)",
+		            data: [28, 48, 40, 19, 86, 27, 90]
+		        }
+		    ]
+		};
 
-	  // 		//append to table 
-	  // 		var test = document.createElement('div');
-	  // 		//test.addClass('lolol');
-	  // 		document.getElementsByTagName('section')[1].appendChild(test);
-	  // 	}
-	  // }
+        var humidityContext = document.getElementById('humidity-chart').getContext('2d');
+        var soilTempContext = document.getElementById('soil-temp-chart').getContext('2d');
 
-
+        var humidityChart = new Chart(humidityContext).Bar(humidityData);
+      	var soilTempChart = new Chart(soilTempContext).Line(data);
 
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"

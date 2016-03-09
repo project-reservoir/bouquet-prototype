@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bouquet</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+  </head>
+
+  <body id="page-body">
+<canvas id="skills" width="300" height="300"></canvas>
+
+      <script type="text/javascript">
+         var data = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.5)",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    barValueSpacing : 5,
+                }
+            ]
+        };
+
+        var context = document.getElementById('skills').getContext('2d');
+        var skillsChart = new Chart(context).Bar(data);
+      
+      </script>
+  </body>
+</html>

@@ -23,12 +23,55 @@ body{
 		display: block;
 	}
 	.map-wrapper{
-		width: 42%;
+		width: 41%;
 		height: 100vh;
 		display: inline-block;
 	}
+	ul.data-nav{
+		background: #5797E3;
+	    width: 82px;
+	    height: auto;
+	    position: absolute;
+	    margin-left: -60px;    
+	    left: 41%;
+    	z-index: 100;
+    	color: white;
+	    li{
+	    	display: block;
+	    	text-align: center;
+	    	padding-top: 20px;
+			padding: 21px 0px;
+			cursor: pointer;
+	    	.transition(0.25s);
+	    	img{
+	    		width: 24px;
+	    		height: 24px;
+	    		margin-bottom: 8px;
+	    		opacity: 0.7;
+	    	}
+	    	h3{
+	    		font-weight: 800;
+	    		font-size: 9px;
+	    		letter-spacing: 1px;
+	    		text-transform: uppercase;
+	    	}
+	    	&:hover{
+	    		.transition(0.25s);
+	    		background: #3774BD;
+	    		img{
+	    			opacity: 1;
+	    		}
+	    	}
+	    }//li
+	    .active{
+	    	background: #3774BD;
+	    	img{
+	    		opacity: 1;
+	    	}
+	    }//active
+	}//data-nav
 	.data-wrapper{
-	    width: 58%;
+	    width: 59%;
 	    background: #282828;
 	    height: 100vh;
 	    display: inline-block;
@@ -36,48 +79,12 @@ body{
 	    position: absolute;
 	    right: 0;
 	    padding-left: 0px;
-		ul.data-nav{
-			background: #5797E3;
-		    width: 82px;
-		    height: auto;
-		    position: absolute;
-		    left: 0px;
-		    margin-left: -60px;
-		    li{
-		    	display: block;
-		    	text-align: center;
-		    	padding-top: 20px;
-    			padding: 21px 0px;
-    			cursor: pointer;
-		    	.transition(0.25s);
-		    	img{
-		    		width: 24px;
-		    		height: 24px;
-		    		margin-bottom: 8px;
-		    		opacity: 0.7;
-		    	}
-		    	h3{
-		    		font-weight: 800;
-		    		font-size: 9px;
-		    		letter-spacing: 1px;
-		    		text-transform: uppercase;
-		    	}
-		    	&:hover{
-		    		.transition(0.25s);
-		    		background: #3774BD;
-		    		img{
-		    			opacity: 1;
-		    		}
-		    	}
-		    }//li
-		    .active{
-		    	background: #3774BD;
-		    	img{
-		    		opacity: 1;
-		    	}
-		    }//active
-		}//data-nav
+	    overflow-y: scroll;
+
 		.data-content{
+			.content-wrapper{
+				margin-left: 60px;
+			}
 			.data-content-header{
 				display: block;
 				position: relative;
@@ -343,6 +350,21 @@ body{
 				}//dandelion-listing
 			}//list-view
 			.indiv-sensor-data{
+				h3{
+			    	font-weight: 900;
+				    letter-spacing: 1.5px;
+				    font-size: 10px;
+				    text-transform: uppercase;
+			    }
+			    h4{
+		    		width: auto;
+					display: inline-block;
+				    font-size: 10px;
+				    color: rgba(255, 255, 255, 0.6);
+				    margin-top: 8px;
+				    font-weight: 500;
+				    //padding-left: 17px;
+			    }
 				ul.device-metadata{
 					width: 100%;
 					cursor: pointer;
@@ -407,25 +429,6 @@ body{
 				    padding-right: 0px;
 				    margin-left: -17px;
 				    position: relative;
-
-				    h3{
-				    	font-weight: 900;
-					    letter-spacing: 1.5px;
-					    font-size: 10px;
-					    text-transform: uppercase;
-				    	// padding-top: 17px;
-				    	// padding-left: 17px;
-				    	// padding-right: 17px;
-				    }
-				    h4{
-			    		width: auto;
-						display: inline-block;
-					    font-size: 10px;
-					    color: rgba(255, 255, 255, 0.6);
-					    margin-top: 8px;
-					    font-weight: 500;
-					    padding-left: 17px;
-				    }
 				    ul.legend{
 				    	display: inline-block;
 					    width: auto;
@@ -485,6 +488,36 @@ body{
 				    	}//table-row
 				    }//moisture-table
 				}//moisture-trend
+				.humidity-trend{
+					width: 100%;
+					cursor: pointer;
+				    border: 1px solid rgba(150, 150, 150, 0.2);
+					border-radius: 1px;
+				    margin: 5px 0px;
+				    padding: 17px;
+				    padding-right: 0px;
+				    margin-left: -17px;
+				    position: relative;
+				    #humidity-chart{
+				    	width: 100%;
+				    	height: 200px;
+				    }
+				}//humidity-trend
+				.soil-temp-trend{
+					width: 100%;
+					cursor: pointer;
+				    border: 1px solid rgba(150, 150, 150, 0.2);
+					border-radius: 1px;
+				    margin: 5px 0px;
+				    padding: 17px;
+				    padding-right: 0px;
+				    margin-left: -17px;
+				    position: relative;
+				    #soil-temp-chart{
+				    	width: 100%;
+				    	height: 200px;
+				    }
+				}
 			}//indiv-sensor-data
 		}//data-content
 	}//data-wrapper
@@ -492,10 +525,10 @@ body{
 }//body
 
 #all-sensor{
-	//display: NONE;
+	display: NONE;
 }
 #indiv-sensor{
-	display: none;
+	display: block;
 	h2{
 	    font-weight: 900;
 	    letter-spacing: 1.5px;
@@ -516,7 +549,6 @@ body{
 		    text-transform: uppercase;
 		    opacity: 0.3;
 		    &:hover{
-		    	//color: #5797E3;
 		    	opacity: 1;
 		    	.transition(0.25s);
 		    }
